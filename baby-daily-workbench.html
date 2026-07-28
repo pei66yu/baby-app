@@ -422,6 +422,76 @@ input, textarea, select { -webkit-user-select: text; user-select: text; }
 .ios-modal-content .step-num { background: var(--primary); color: white; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; }
 .ios-modal-content .modal-btn { margin-top: 16px; width: 100%; }
 
+/* ===== 日历表页面 ===== */
+.cal-head { display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; }
+.cal-head .ym { font-size:18px; font-weight:700; color:var(--primary-dark); }
+.cal-nav-btns { display:flex; gap:6px; }
+.cal-nav-btns button { background:var(--primary-light); color:var(--primary-dark); border:none; width:34px; height:34px; border-radius:8px; font-size:16px; cursor:pointer; font-weight:700; }
+.cal-nav-btns button:hover { background:var(--primary); color:#fff; }
+.cal-grid { display:grid; grid-template-columns:repeat(7,1fr); gap:4px; }
+.cal-dow { text-align:center; font-size:12px; color:var(--text-light); font-weight:700; padding:6px 0; }
+.cal-cell {
+  aspect-ratio:1; border-radius:8px; display:flex; flex-direction:column; align-items:center; justify-content:center;
+  font-size:14px; background:#fafff5; cursor:pointer; transition:all .15s; position:relative; min-height:40px;
+}
+.cal-cell.empty { background:transparent; cursor:default; }
+.cal-cell.other { color:#ccc; opacity:.4; }
+.cal-cell.today { background:var(--primary); color:#fff; font-weight:700; }
+.cal-cell.selected { outline:2px solid var(--primary-dark); outline-offset:-2px; }
+.cal-cell:hover:not(.empty):not(.today) { background:var(--primary-light); }
+.cal-dots { display:flex; gap:2px; margin-top:2px; height:5px; }
+.cal-dot { width:5px; height:5px; border-radius:50%; }
+.cal-legend { display:flex; gap:14px; flex-wrap:wrap; font-size:11px; color:var(--text-light); margin-top:12px; padding-top:10px; border-top:1px dashed var(--border); }
+.cal-legend span { display:flex; align-items:center; gap:4px; }
+.cal-legend .dot { width:8px; height:8px; border-radius:50%; }
+.cal-day-detail { margin-top:12px; }
+.cal-day-section { margin-bottom:12px; }
+.cal-day-section .sec-title { font-size:13px; font-weight:700; margin-bottom:6px; display:flex; align-items:center; gap:6px; }
+.cal-day-empty { text-align:center; color:#ccc; padding:24px 12px; font-size:13px; }
+
+/* ===== 健康打卡页面 ===== */
+.health-stat { display:flex; gap:12px; margin-bottom:16px; flex-wrap:wrap; }
+.health-stat .stat-pill { min-width:120px; }
+.ring-wrap { display:flex; align-items:center; justify-content:center; flex-direction:column; gap:6px; }
+.ring { position:relative; width:150px; height:150px; }
+.ring svg { transform:rotate(-90deg); }
+.ring .lbl { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; }
+.ring .num { font-size:30px; font-weight:700; color:var(--primary-dark); }
+.ring .unit { font-size:12px; color:var(--text-light); }
+.water-cups { display:grid; grid-template-columns:repeat(8,1fr); gap:6px; margin:14px 0; }
+.cup {
+  aspect-ratio:1; border-radius:6px 6px 10px 10px; border:2px solid var(--blue);
+  display:flex; align-items:flex-end; justify-content:center; overflow:hidden; position:relative;
+  cursor:pointer; transition:all .15s;
+}
+.cup .water { position:absolute; bottom:0; left:0; right:0; background:linear-gradient(180deg,#90caf9,#42a5f5); transition:height .25s; height:0; }
+.cup.full .water { height:100%; }
+.cup-num { position:relative; z-index:1; font-size:11px; color:var(--blue); font-weight:600; padding-bottom:4px; }
+.cup.full .cup-num { color:#fff; }
+.weight-chart-box { margin-top:16px; }
+.weight-chart-box svg { width:100%; height:auto; }
+.bar-track { height:10px; background:#e8f5e9; border-radius:5px; overflow:hidden; }
+.bar-fill-h { height:100%; border-radius:5px; transition:width .4s; }
+
+/* ===== 每周复盘页面 ===== */
+.weekly-tabs { display:flex; gap:4px; background:#f1f8e9; border-radius:10px; padding:4px; margin-bottom:16px; }
+.weekly-tab { flex:1; padding:9px; border-radius:8px; font-size:13px; font-weight:600; color:var(--text-light); text-align:center; cursor:pointer; transition:all .15s; }
+.weekly-tab.active { background:#fff; color:var(--primary-dark); box-shadow:0 2px 6px rgba(0,0,0,.06); }
+.save-goal-card {
+  background:linear-gradient(135deg,#fff3e0,#ffe0b2); border-radius:var(--radius);
+  padding:20px; text-align:center; margin-bottom:12px;
+}
+.save-goal-card .pig { font-size:32px; }
+.save-goal-card .pct { font-size:30px; font-weight:700; color:#e65100; margin:4px 0; }
+.save-goal-card .amt { font-size:14px; color:#5d4037; }
+.save-goal-item { position:relative; }
+.save-goal-item .del { position:absolute; top:12px; right:14px; cursor:pointer; color:#ccc; font-size:18px; z-index:2; }
+.save-goal-item .del:hover { color:#e53935; }
+.weekly-review-card { border-left:4px solid var(--primary); padding-left:14px; margin-bottom:14px; background:#fafff5; border-radius:0 10px 10px 0; padding:12px 14px; }
+.weekly-review-card .wk { font-weight:700; color:var(--primary-dark); margin-bottom:6px; font-size:14px; }
+.weekly-review-card .body { font-size:13px; line-height:1.7; }
+.weekly-review-card .body b { color:var(--text); }
+
 /* ===== 响应式 ===== */
 @media (max-width: 768px) {
   .sidebar { transform: translateX(-100%); }
@@ -432,6 +502,8 @@ input, textarea, select { -webkit-user-select: text; user-select: text; }
   .header-right { justify-content: center; }
   .grid { grid-template-columns: 1fr; }
   .stat-pill { min-width: 45%; }
+  .water-cups { grid-template-columns:repeat(8,1fr); }
+  .ring { width:130px; height:130px; }
 }
 </style>
 </head>
@@ -458,14 +530,23 @@ input, textarea, select { -webkit-user-select: text; user-select: text; }
     <div class="nav-item active" onclick="switchPage('parenting', this)">
       <span class="nav-icon">👶</span> 育儿工作台
     </div>
+    <div class="nav-item" onclick="switchPage('calendar', this)">
+      <span class="nav-icon">📅</span> 日历表
+    </div>
     <div class="nav-item" onclick="switchPage('plan', this)">
       <span class="nav-icon">📋</span> 每日计划
+    </div>
+    <div class="nav-item" onclick="switchPage('health', this)">
+      <span class="nav-icon">💪</span> 健康打卡
     </div>
     <div class="nav-item" onclick="switchPage('account', this)">
       <span class="nav-icon">💰</span> 记账
     </div>
     <div class="nav-item" onclick="switchPage('review', this)">
-      <span class="nav-icon">📝</span> 复盘
+      <span class="nav-icon">📝</span> 每日复盘
+    </div>
+    <div class="nav-item" onclick="switchPage('weekly', this)">
+      <span class="nav-icon">🔍</span> 每周复盘
     </div>
   </div>
 
@@ -816,6 +897,161 @@ input, textarea, select { -webkit-user-select: text; user-select: text; }
   </div>
 </div>
 
+<!-- ====================================== -->
+<!-- 页面6: 日历表 -->
+<!-- ====================================== -->
+<div class="page" id="page-calendar">
+  <div class="header">
+    <div class="header-left">
+      <h1>📅 日历表</h1>
+      <div class="subtitle">一个月的记录，一目了然</div>
+    </div>
+    <div class="header-right">
+      <div class="date-nav">
+        <button onclick="calGoToday()">今天</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:16px">
+    <div class="card-body">
+      <div class="cal-head">
+        <div class="ym" id="calYM">2026年7月</div>
+        <div class="cal-nav-btns">
+          <button onclick="calPrev()">‹</button>
+          <button onclick="calNext()">›</button>
+        </div>
+      </div>
+      <div class="cal-grid" id="calDowRow"></div>
+      <div class="cal-grid" id="calGrid" style="margin-top:4px"></div>
+      <div class="cal-legend">
+        <span><span class="dot" style="background:#ff8a65"></span>喂奶</span>
+        <span><span class="dot" style="background:#26a69a"></span>睡眠</span>
+        <span><span class="dot" style="background:#f48fb1"></span>排便</span>
+        <span><span class="dot" style="background:#64b5f6"></span>健康</span>
+        <span><span class="dot" style="background:#66bb6a"></span>计划/复盘</span>
+        <span><span class="dot" style="background:#ffd54f"></span>记账</span>
+        <span><span class="dot" style="background:#ba68c8"></span>单词</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" style="background:linear-gradient(90deg,#f1f8e9,#f9fbe7);color:#558b2f">
+      <span class="emoji">📌</span> <span id="calDetailTitle">点击日期查看详情</span>
+    </div>
+    <div class="card-body">
+      <div class="cal-day-detail" id="calDayDetail">
+        <div class="cal-day-empty">👆 点击上方任意日期，查看那天的全部记录</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ====================================== -->
+<!-- 页面7: 健康打卡（体重 + 喝水） -->
+<!-- ====================================== -->
+<div class="page" id="page-health">
+  <div class="header">
+    <div class="header-left">
+      <h1>💪 健康打卡</h1>
+      <div class="subtitle">照顾好宝宝，也要照顾好自己</div>
+    </div>
+    <div class="header-right">
+      <div class="date-nav">
+        <button onclick="changeDate(-1)">‹</button>
+        <span class="date-text" id="healthDateText">今天</span>
+        <button onclick="changeDate(1)">›</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="health-stat">
+    <div class="stat-pill"><span class="icon">⚖️</span><div class="info"><div class="num" id="hStatWeight">--</div><div class="desc">今日体重(kg)</div></div></div>
+    <div class="stat-pill"><span class="icon">💧</span><div class="info"><div class="num" id="hStatWater">0/8</div><div class="desc">今日喝水(杯)</div></div></div>
+    <div class="stat-pill"><span class="icon">🔥</span><div class="info"><div class="num" id="hStatStreak">0</div><div class="desc">连续打卡天</div></div></div>
+  </div>
+
+  <!-- 体重打卡 -->
+  <div class="card" style="margin-bottom:16px">
+    <div class="card-header" style="background:linear-gradient(90deg,#e3f2fd,#e8eaf6);color:#1565c0">
+      <span class="emoji">⚖️</span> 体重打卡
+    </div>
+    <div class="card-body">
+      <div class="input-row">
+        <input type="date" id="weightDate" style="width:150px">
+        <input type="number" id="weightValue" placeholder="体重" step="0.1" min="20" max="200" style="width:100px">
+        <span style="line-height:36px;color:var(--text-light)">kg</span>
+        <button class="btn" onclick="saveWeight()">记录</button>
+      </div>
+      <div class="weight-chart-box" id="weightChartBox"></div>
+    </div>
+  </div>
+
+  <!-- 喝水打卡 -->
+  <div class="card">
+    <div class="card-header" style="background:linear-gradient(90deg,#e1f5fe,#e3f2fd);color:#0277bd">
+      <span class="emoji">💧</span> 喝水打卡
+      <span style="margin-left:auto;font-size:12px;font-weight:600" id="waterHint">还差 8 杯</span>
+    </div>
+    <div class="card-body">
+      <div style="display:flex;gap:20px;align-items:center;flex-wrap:wrap">
+        <div class="ring-wrap">
+          <div class="ring">
+            <svg width="150" height="150">
+              <circle cx="75" cy="75" r="65" fill="none" stroke="#e3f2fd" stroke-width="11"/>
+              <circle cx="75" cy="75" r="65" fill="none" stroke="#42a5f5" stroke-width="11" stroke-linecap="round"
+                id="waterRing" stroke-dasharray="408.4" stroke-dashoffset="408.4" style="transition:stroke-dashoffset .3s"/>
+            </svg>
+            <div class="lbl"><div class="num" id="waterNum">0</div><div class="unit">/ 8 杯</div></div>
+          </div>
+        </div>
+        <div style="flex:1;min-width:220px">
+          <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">点击杯子记录（每杯约 250ml）</div>
+          <div class="water-cups" id="waterCups"></div>
+          <div class="input-row" style="margin-top:8px">
+            <button class="btn btn-sm" onclick="setWater(getWaterCups()-1)">−1 杯</button>
+            <button class="btn btn-sm" onclick="setWater(getWaterCups()+1)">+1 杯</button>
+            <button class="btn btn-sm btn-outline" onclick="setWater(0)">重置</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ====================================== -->
+<!-- 页面8: 每周复盘（记账汇总 + 存钱 + 周复盘） -->
+<!-- ====================================== -->
+<div class="page" id="page-weekly">
+  <div class="header">
+    <div class="header-left">
+      <h1>🔍 每周复盘</h1>
+      <div class="subtitle">一周一回头，理财又理生活</div>
+    </div>
+    <div class="header-right">
+      <div class="date-nav">
+        <button onclick="weeklyPrev()">‹</button>
+        <span class="date-text" id="weeklyLabel">本周</span>
+        <button onclick="weeklyNext()">›</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="account-summary">
+    <div class="account-card income"><div class="label">📈 本周收入</div><div class="amount" id="wkIncome">¥0</div></div>
+    <div class="account-card expense"><div class="label">📉 本周支出</div><div class="amount" id="wkExpense">¥0</div></div>
+    <div class="account-card balance"><div class="label">💰 本周结余</div><div class="amount" id="wkBalance">¥0</div></div>
+  </div>
+
+  <div class="weekly-tabs">
+    <div class="weekly-tab active" onclick="weeklyTab='save';renderWeekly()">🐷 存钱目标</div>
+    <div class="weekly-tab" onclick="weeklyTab='review';renderWeekly()">📝 周复盘</div>
+  </div>
+
+  <div id="weeklyBody"></div>
+</div>
+
 </div><!-- /main-content -->
 </div><!-- /app-layout -->
 
@@ -923,6 +1159,9 @@ function switchPage(name, el) {
   if (name === 'account') renderAccount();
   if (name === 'review') renderReview();
   if (name === 'word') renderWord();
+  if (name === 'calendar') renderCalendar();
+  if (name === 'health') renderHealth();
+  if (name === 'weekly') renderWeekly();
 }
 function toggleSidebar() {
   const sb = document.getElementById('sidebar');
@@ -933,7 +1172,7 @@ function toggleSidebar() {
 function updateDateTexts() {
   const today = formatDate(new Date());
   const txt = currentDate === today ? '今天' : currentDate.slice(5);
-  ['dateText','planDateText','accDateText','reviewDateText','wordDateText'].forEach(id => {
+  ['dateText','planDateText','accDateText','reviewDateText','wordDateText','healthDateText'].forEach(id => {
     const el = document.getElementById(id);
     if (el) el.textContent = txt;
   });
@@ -1296,7 +1535,8 @@ function exportData(){
   showToast('已导出 📁');
 }
 function exportAllData(){
-  const blob=new Blob([JSON.stringify({daily:allData,words:wordData},null,2)],{type:'application/json'});
+  const all={daily:allData,words:wordData,health:window.healthData,saveGoals:window.saveGoals,weeklyReviews:window.weeklyReviews};
+  const blob=new Blob([JSON.stringify(all,null,2)],{type:'application/json'});
   const url=URL.createObjectURL(blob);const a=document.createElement('a');
   a.href=url;a.download='养娃工作台_全部数据.json';a.click();URL.revokeObjectURL(url);
   showToast('全部数据已导出 📁');
@@ -1318,7 +1558,13 @@ function copyToClipboard(){
   navigator.clipboard.writeText(t).then(()=>showToast('日报已复制 📋')).catch(()=>showToast('复制失败'));
 }
 function clearToday(){delete allData[currentDate];saveData();renderAll();showToast('已清除今日数据');}
-function clearAllData(){allData={};wordData={};saveData();saveWordData();renderAll();showToast('所有数据已清除');}
+function clearAllData(){
+  allData={};wordData={};
+  window.healthData={weights:[],waters:[]};
+  window.saveGoals=[]; window.weeklyReviews=[];
+  saveData();saveWordData();saveHealth();saveGoalsData();saveWeeklyReviews();
+  renderAll();showToast('所有数据已清除');
+}
 
 // ===================== 渲染全部 =====================
 function renderAll() {
@@ -1337,7 +1583,556 @@ function renderAll() {
     if(id==='page-account')renderAccount();
     if(id==='page-review')renderReview();
     if(id==='page-word')renderWord();
+    if(id==='page-calendar')renderCalendar();
+    if(id==='page-health')renderHealth();
+    if(id==='page-weekly')renderWeekly();
   }
+}
+
+// ============================================================
+// 日历表模块
+// ============================================================
+let calCursor = new Date();   // 当前月历游标
+let calSelected = currentDate; // 选中的日期
+
+function getMonthData(ym) {
+  // 汇总某月所有日期的记录标志，返回 {date: {feed,sleep,poop,health,plan,account,word}}
+  const result = {};
+  Object.keys(allData).forEach(date => {
+    if (!date.startsWith(ym)) return;
+    const d = allData[date];
+    const flags = {};
+    if (d.feed && d.feed.length) flags.feed = true;
+    if (d.sleep && d.sleep.length) flags.sleep = true;
+    if (d.poop && d.poop.length) flags.poop = true;
+    if (d.temps && d.temps.length) flags.health = true;
+    if ((d.plans && d.plans.length) || (d.review && (d.review.mood || d.review.highlight))) flags.plan = true;
+    if (d.accounts && d.accounts.length) flags.account = true;
+    if (d.words && d.words.length) flags.word = true;
+    // 健康打卡数据
+    if (window.healthData && window.healthData.weights) {
+      if (window.healthData.weights.some(w => w.date === date)) flags.health = true;
+    }
+    if (window.healthData && window.healthData.waters) {
+      if (window.healthData.waters.some(w => w.date === date)) flags.health = true;
+    }
+    if (Object.keys(flags).length) result[date] = flags;
+  });
+  return result;
+}
+
+function renderCalendar() {
+  const y = calCursor.getFullYear(), m = calCursor.getMonth();
+  const first = new Date(y, m, 1), startDow = first.getDay();
+  const days = new Date(y, m + 1, 0).getDate();
+  const prevDays = new Date(y, m, 0).getDate();
+  const dows = ['日','一','二','三','四','五','六'];
+  const ym = y + '-' + String(m + 1).padStart(2, '0');
+  const monthFlags = getMonthData(ym);
+  const todayStr = formatDate(new Date());
+
+  let cells = '';
+  for (let i = 0; i < startDow; i++) {
+    cells += `<div class="cal-cell other">${prevDays - startDow + 1 + i}</div>`;
+  }
+  for (let d = 1; d <= days; d++) {
+    const ds = y + '-' + String(m + 1).padStart(2, '0') + '-' + String(d).padStart(2, '0');
+    const isToday = ds === todayStr;
+    const isSel = ds === calSelected;
+    const f = monthFlags[ds] || {};
+    let dots = '';
+    const dotMap = { feed:'#ff8a65', sleep:'#26a69a', poop:'#f48fb1', health:'#64b5f6', plan:'#66bb6a', account:'#ffd54f', word:'#ba68c8' };
+    Object.keys(dotMap).forEach(k => { if (f[k]) dots += `<span class="cal-dot" style="background:${dotMap[k]}"></span>`; });
+    cells += `<div class="cal-cell ${isToday?'today':''} ${isSel?'selected':''}" onclick="calSelect('${ds}')">
+      <span>${d}</span><div class="cal-dots">${dots}</div>
+    </div>`;
+  }
+  const remain = (startDow + days) % 7;
+  if (remain) { for (let i = 1; i <= 7 - remain; i++) cells += `<div class="cal-cell other">${i}</div>`; }
+
+  document.getElementById('calYM').textContent = `${y}年${m + 1}月`;
+  document.getElementById('calDowRow').innerHTML = dows.map(d => `<div class="cal-dow">${d}</div>`).join('');
+  document.getElementById('calGrid').innerHTML = cells;
+  renderCalDetail();
+}
+
+function calSelect(ds) {
+  calSelected = ds;
+  renderCalendar();
+}
+
+function calPrev() {
+  calCursor = new Date(calCursor.getFullYear(), calCursor.getMonth() - 1, 1);
+  renderCalendar();
+}
+function calNext() {
+  calCursor = new Date(calCursor.getFullYear(), calCursor.getMonth() + 1, 1);
+  renderCalendar();
+}
+function calGoToday() {
+  const t = new Date();
+  calCursor = new Date(t.getFullYear(), t.getMonth(), 1);
+  calSelected = formatDate(t);
+  renderCalendar();
+}
+
+function renderCalDetail() {
+  const el = document.getElementById('calDayDetail');
+  const title = document.getElementById('calDetailTitle');
+  const d = calSelected;
+  const cnD = d.slice(5).replace('-', '月') + '日';
+  title.textContent = `📌 ${cnD} 的记录`;
+  const data = allData[d] || {};
+  const parts = [];
+
+  // 喂奶
+  if (data.feed && data.feed.length) {
+    parts.push(`<div class="cal-day-section"><div class="sec-title">🍼 喂奶 (${data.feed.length}次)</div>` +
+      data.feed.map(r => `<div class="record-item"><span class="time">${r.time}</span><span class="detail">${r.type}${r.amount?' '+r.amount+'ml':''}${r.note?' · '+r.note:''}</span></div>`).join('') + `</div>`);
+  }
+  // 睡眠
+  if (data.sleep && data.sleep.length) {
+    parts.push(`<div class="cal-day-section"><div class="sec-title">😴 睡眠</div>` +
+      data.sleep.map(r => `<div class="record-item"><span class="time">${r.start}→${r.end}</span><span class="detail">${r.hours}h${r.note?' · '+r.note:''}</span></div>`).join('') + `</div>`);
+  }
+  // 排便
+  if (data.poop && data.poop.length) {
+    parts.push(`<div class="cal-day-section"><div class="sec-title">💩 排便 (${data.poop.length}次)</div>` +
+      data.poop.map(r => `<div class="record-item"><span class="time">${r.time}</span><span class="detail">${r.type}${r.note?' · '+r.note:''}</span></div>`).join('') + `</div>`);
+  }
+  // 体温/用药
+  if ((data.temps && data.temps.length) || (data.meds && data.meds.length)) {
+    let h = `<div class="cal-day-section"><div class="sec-title">🌡️ 健康</div>`;
+    if (data.temps && data.temps.length) h += data.temps.map(r => `<div class="record-item"><span class="time">${r.time}</span><span class="detail">体温 ${r.value}°C</span></div>`).join('');
+    if (data.meds && data.meds.length) h += data.meds.map(r => `<div class="record-item"><span class="time">${r.time}</span><span class="detail">💊 ${r.name}${r.dose?' '+r.dose:''}</span></div>`).join('');
+    h += `</div>`;
+    parts.push(h);
+  }
+  // 健康打卡（体重/喝水）
+  if (window.healthData) {
+    const w = window.healthData.weights.find(x => x.date === d);
+    const wa = window.healthData.waters.find(x => x.date === d);
+    if (w || wa) {
+      let h = `<div class="cal-day-section"><div class="sec-title">💪 健康打卡</div><div class="input-row" style="gap:8px">`;
+      if (w) h += `<span class="record-item" style="margin:0">⚖️ ${w.value}kg</span>`;
+      if (wa) h += `<span class="record-item" style="margin:0">💧 ${wa.cups}杯</span>`;
+      h += `</div></div>`;
+      parts.push(h);
+    }
+  }
+  // 计划
+  if (data.plans && data.plans.length) {
+    parts.push(`<div class="cal-day-section"><div class="sec-title">📋 计划 (${data.plans.filter(p=>p.done).length}/${data.plans.length})</div>` +
+      data.plans.map(p => `<div class="record-item"><span class="time">${p.time}</span><span class="detail">${p.done?'✅':'☐'} ${p.category} · ${p.text}</span></div>`).join('') + `</div>`);
+  }
+  // 记账
+  if (data.accounts && data.accounts.length) {
+    parts.push(`<div class="cal-day-section"><div class="sec-title">💰 账目 (${data.accounts.length}笔)</div>` +
+      data.accounts.map(r => `<div class="record-item"><span class="time">${r.time}</span><span class="detail">${r.type==='income'?'+':'-'}¥${r.amount} ${r.category}${r.note?' · '+r.note:''}</span></div>`).join('') + `</div>`);
+  }
+  // 单词
+  if (data.words && data.words.length) {
+    parts.push(`<div class="cal-day-section"><div class="sec-title">📖 单词 (${data.words.length}个)</div>` +
+      data.words.map(w => `<div class="record-item"><span class="time">${w.time}</span><span class="detail">${w.word} ${w.meaning}</span></div>`).join('') + `</div>`);
+  }
+  // 复盘
+  if (data.review && (data.review.mood || data.review.highlight)) {
+    let h = `<div class="cal-day-section"><div class="sec-title">📝 每日复盘</div>`;
+    if (data.review.mood) h += `<div class="record-item"><span class="detail">心情：${data.review.mood}</span></div>`;
+    if (data.review.rating) h += `<div class="record-item"><span class="detail">评分：${'⭐'.repeat(data.review.rating)}</span></div>`;
+    if (data.review.highlight) h += `<div class="record-item"><span class="detail">亮点：${data.review.highlight}</span></div>`;
+    h += `</div>`;
+    parts.push(h);
+  }
+
+  el.innerHTML = parts.length ? parts.join('') : `<div class="cal-day-empty">这一天没有记录</div>`;
+}
+
+// ============================================================
+// 健康打卡模块（体重 + 喝水）
+// ============================================================
+const HEALTH_KEY = 'health_data';
+const WATER_GOAL = 8;
+window.healthData = loadHealth();
+
+function loadHealth() {
+  try {
+    const raw = localStorage.getItem(HEALTH_KEY);
+    if (raw) return JSON.parse(raw);
+  } catch (e) {}
+  return { weights: [], waters: [] };
+}
+function saveHealth() {
+  localStorage.setItem(HEALTH_KEY, JSON.stringify(window.healthData));
+}
+
+function renderHealth() {
+  // 日期输入框
+  const wd = document.getElementById('weightDate');
+  if (wd) wd.value = currentDate;
+  // 今日数据
+  const tw = window.healthData.weights.find(w => w.date === currentDate);
+  const wa = window.healthData.waters.find(w => w.date === currentDate);
+  const cups = wa ? wa.cups : 0;
+  document.getElementById('hStatWeight').textContent = tw ? tw.value : '--';
+  document.getElementById('hStatWater').textContent = cups + '/' + WATER_GOAL;
+  document.getElementById('hStatStreak').textContent = healthStreak();
+  // 体重输入框预填
+  document.getElementById('weightValue').value = tw ? tw.value : '';
+  // 喝水
+  renderWaterCups(cups);
+  // 体重趋势
+  renderWeightChart();
+}
+
+function healthStreak() {
+  let n = 0;
+  const d = new Date();
+  for (;;) {
+    const ds = formatDate(d);
+    const has = window.healthData.weights.some(w => w.date === ds) || window.healthData.waters.some(w => w.date === ds);
+    if (has) { n++; d.setDate(d.getDate() - 1); }
+    else break;
+    if (n > 365) break;
+  }
+  return n;
+}
+
+function saveWeight() {
+  const date = document.getElementById('weightDate').value;
+  const val = parseFloat(document.getElementById('weightValue').value);
+  if (!val || val <= 0) { showToast('请输入有效体重'); return; }
+  let w = window.healthData.weights.find(x => x.date === date);
+  if (w) w.value = val;
+  else window.healthData.weights.push({ date, value: val });
+  // 按日期排序
+  window.healthData.weights.sort((a, b) => a.date.localeCompare(b.date));
+  saveHealth();
+  renderHealth();
+  showToast('体重已记录 ⚖️');
+}
+
+function renderWeightChart() {
+  const hist = window.healthData.weights.slice(-7);
+  const box = document.getElementById('weightChartBox');
+  if (hist.length < 2) {
+    box.innerHTML = `<div style="text-align:center;color:#ccc;font-size:13px;padding:16px">至少记录 2 次体重才能看到趋势图</div>`;
+    return;
+  }
+  const w = 340, h = 100, pad = 12;
+  const vals = hist.map(x => x.value);
+  const min = Math.min(...vals) - 0.5, max = Math.max(...vals) + 0.5;
+  const rng = max - min || 1;
+  const pts = hist.map((x, i) => [pad + i * (w - 2 * pad) / (hist.length - 1), h - pad - (x.value - min) / rng * (h - 2 * pad)]);
+  const path = pts.map((p, i) => (i ? 'L' : 'M') + p[0].toFixed(1) + ',' + p[1].toFixed(1)).join(' ');
+  const labels = hist.map(x => x.date.slice(5)).join(' · ');
+  box.innerHTML = `
+    <div style="font-size:13px;font-weight:600;color:var(--text-light);margin-bottom:8px">📈 近 ${hist.length} 次体重趋势</div>
+    <svg viewBox="0 0 ${w} ${h}" style="width:100%;height:auto">
+      <path d="${path}" fill="none" stroke="#42a5f5" stroke-width="2.5" stroke-linejoin="round"/>
+      ${pts.map(p => `<circle cx="${p[0].toFixed(1)}" cy="${p[1].toFixed(1)}" r="3.5" fill="#42a5f5"/>`).join('')}
+      ${pts.map((p, i) => `<text x="${p[0].toFixed(1)}" y="${(p[1] - 8).toFixed(1)}" font-size="10" fill="#1565c0" text-anchor="middle">${hist[i].value}</text>`).join('')}
+    </svg>
+    <div style="font-size:11px;color:var(--text-light);margin-top:4px">${labels}（单位 kg）</div>`;
+}
+
+function renderWaterCups(cups) {
+  const el = document.getElementById('waterCups');
+  let html = '';
+  for (let i = 0; i < WATER_GOAL; i++) {
+    html += `<div class="cup ${i < cups ? 'full' : ''}" onclick="waterClick(${i})"><div class="water"></div><div class="cup-num">${i + 1}</div></div>`;
+  }
+  el.innerHTML = html;
+  // 进度环
+  const pct = Math.min(100, cups / WATER_GOAL * 100);
+  const circumference = 2 * Math.PI * 65;
+  document.getElementById('waterRing').setAttribute('stroke-dasharray', circumference);
+  document.getElementById('waterRing').setAttribute('stroke-dashoffset', circumference * (1 - pct / 100));
+  document.getElementById('waterNum').textContent = cups;
+  const remain = WATER_GOAL - cups;
+  document.getElementById('waterHint').textContent = remain > 0 ? `还差 ${remain} 杯` : '已达标 🎉';
+}
+
+function waterClick(i) {
+  // 点击第 i 个杯子（0-based）：如果当前正好是 i+1 杯则减到 i，否则设为 i+1
+  const cur = getWaterCups();
+  if (cur === i + 1) setWater(i);
+  else setWater(i + 1);
+}
+
+function getWaterCups() {
+  const w = window.healthData.waters.find(w => w.date === currentDate);
+  return w ? w.cups : 0;
+}
+
+function setWater(n) {
+  n = Math.max(0, Math.min(20, n));
+  let w = window.healthData.waters.find(x => x.date === currentDate);
+  if (n === 0) {
+    window.healthData.waters = window.healthData.waters.filter(x => x.date !== currentDate);
+  } else if (w) {
+    w.cups = n;
+  } else {
+    window.healthData.waters.push({ date: currentDate, cups: n });
+  }
+  saveHealth();
+  renderHealth();
+}
+
+// ============================================================
+// 每周复盘模块（记账汇总 + 存钱目标 + 周复盘）
+// ============================================================
+const SAVEGOAL_KEY = 'save_goals';
+const WEEKLY_REVIEW_KEY = 'weekly_reviews';
+let weeklyCursor = currentDate;  // 周复盘游标日期
+let weeklyTab = 'save';
+
+window.saveGoals = loadJSON(SAVEGOAL_KEY, []);
+window.weeklyReviews = loadJSON(WEEKLY_REVIEW_KEY, []);
+
+function loadJSON(key, def) {
+  try { const r = localStorage.getItem(key); if (r) return JSON.parse(r); } catch (e) {}
+  return def;
+}
+function saveGoalsData() { localStorage.setItem(SAVEGOAL_KEY, JSON.stringify(window.saveGoals)); }
+function saveWeeklyReviews() { localStorage.setItem(WEEKLY_REVIEW_KEY, JSON.stringify(window.weeklyReviews)); }
+
+function getWeekStart(ds) {
+  const d = new Date(ds + 'T00:00:00');
+  const day = d.getDay() || 7;  // 周日=7
+  d.setDate(d.getDate() - day + 1);
+  return formatDate(d);
+}
+function getWeekDays(ds) {
+  const start = getWeekStart(ds);
+  const sd = new Date(start + 'T00:00:00');
+  return Array.from({ length: 7 }, (_, i) => {
+    const d = new Date(sd);
+    d.setDate(d.getDate() + i);
+    return formatDate(d);
+  });
+}
+function weekLabel(ds) {
+  const start = getWeekStart(ds);
+  const sd = new Date(start + 'T00:00:00');
+  return `${sd.getMonth() + 1}月${sd.getDate()}日那周`;
+}
+function weekKey(ds) {
+  return getWeekStart(ds);
+}
+
+function weeklyPrev() {
+  const d = new Date(weeklyCursor + 'T00:00:00');
+  d.setDate(d.getDate() - 7);
+  weeklyCursor = formatDate(d);
+  renderWeekly();
+}
+function weeklyNext() {
+  const d = new Date(weeklyCursor + 'T00:00:00');
+  d.setDate(d.getDate() + 7);
+  weeklyCursor = formatDate(d);
+  renderWeekly();
+}
+
+function renderWeekly() {
+  const days = getWeekDays(weeklyCursor);
+  document.getElementById('weeklyLabel').textContent = weekLabel(weeklyCursor);
+
+  // 本周收支
+  let income = 0, expense = 0;
+  const catStats = {};
+  days.forEach(ds => {
+    const data = allData[ds];
+    if (data && data.accounts) {
+      data.accounts.forEach(a => {
+        if (a.type === 'income') income += a.amount;
+        else { expense += a.amount; catStats[a.category] = (catStats[a.category] || 0) + a.amount; }
+      });
+    }
+  });
+  document.getElementById('wkIncome').textContent = '¥' + income.toFixed(0);
+  document.getElementById('wkExpense').textContent = '¥' + expense.toFixed(0);
+  document.getElementById('wkBalance').textContent = '¥' + (income - expense).toFixed(0);
+
+  // Tab 切换高亮
+  document.querySelectorAll('.weekly-tab').forEach((t, i) => {
+    t.classList.toggle('active', (i === 0 && weeklyTab === 'save') || (i === 1 && weeklyTab === 'review'));
+  });
+
+  const body = document.getElementById('weeklyBody');
+  if (weeklyTab === 'save') {
+    body.innerHTML = renderSaveGoals() + renderWeekAccountDetail(days, income, expense, catStats);
+  } else {
+    body.innerHTML = renderWeeklyReview(weeklyCursor);
+  }
+}
+
+function renderSaveGoals() {
+  const goals = window.saveGoals;
+  let html = `<div class="card" style="margin-bottom:16px">
+    <div class="card-header" style="background:linear-gradient(90deg,#fff3e0,#ffe0b2);color:#e65100">
+      <span class="emoji">🐷</span> 存钱目标
+      <button class="btn btn-sm" style="margin-left:auto" onclick="openGoalModal()">+ 新建</button>
+    </div>
+    <div class="card-body">`;
+
+  if (goals.length === 0) {
+    html += `<div style="text-align:center;color:#ccc;padding:20px;font-size:13px">还没有存钱目标，点击右上角新建一个吧！</div>`;
+  } else {
+    goals.forEach(g => {
+      const pct = Math.min(100, g.current / g.target * 100);
+      html += `
+      <div class="save-goal-item" style="margin-bottom:16px">
+        <span class="del" onclick="delGoal('${g.id}')">×</span>
+        <div class="save-goal-card">
+          <div class="pig">🐷</div>
+          <div class="pct">${pct.toFixed(0)}%</div>
+          <div class="amt">¥${g.current.toFixed(0)} / ¥${g.target.toFixed(0)}</div>
+          <div style="font-size:13px;font-weight:600;color:#5d4037;margin-top:4px">${g.name}</div>
+        </div>
+        <div class="bar-track" style="margin:10px 0">
+          <div class="bar-fill-h" style="width:${pct}%;background:linear-gradient(90deg,#ff8a65,#ffd54f)"></div>
+        </div>
+        <div class="input-row">
+          <input type="number" id="goalAmt_${g.id}" placeholder="金额" style="width:100px">
+          <button class="btn btn-sm" onclick="addGoalMoney('${g.id}',false)">存入</button>
+          <button class="btn btn-sm btn-outline" onclick="addGoalMoney('${g.id}',true)">取出</button>
+        </div>
+      </div>`;
+    });
+  }
+  html += `</div></div>`;
+  return html;
+}
+
+function renderWeekAccountDetail(days, income, expense, catStats) {
+  // 本周账目明细
+  let listHtml = '';
+  days.forEach(ds => {
+    const data = allData[ds];
+    if (data && data.accounts && data.accounts.length) {
+      data.accounts.forEach((a, i) => {
+        listHtml += `<div class="account-item">
+          <span class="cat-icon">${(a.category.split(' ')[0]) || '📦'}</span>
+          <div class="info"><div class="title">${a.category}${a.note?' · '+a.note:''}</div><div class="time">${ds.slice(5)} ${a.time}</div></div>
+          <span class="amount-text ${a.type}">${a.type==='income'?'+':'-'}¥${a.amount}</span>
+        </div>`;
+      });
+    }
+  });
+  if (!listHtml) listHtml = `<div style="text-align:center;color:#ccc;padding:16px;font-size:13px">本周还没有记账</div>`;
+
+  // 分类统计
+  const sorted = Object.entries(catStats).sort((a, b) => b[1] - a[1]);
+  const maxVal = sorted.length ? sorted[0][1] : 1;
+  let catHtml = sorted.map(([cat, val]) => `
+    <div style="margin-bottom:10px">
+      <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px"><span>${cat}</span><span style="font-weight:600">¥${val.toFixed(0)}</span></div>
+      <div style="height:8px;background:#e8f5e9;border-radius:4px;overflow:hidden"><div style="height:100%;width:${val/maxVal*100}%;background:linear-gradient(90deg,#66bb6a,#43a047);border-radius:4px"></div></div>
+    </div>`).join('');
+  if (!catHtml) catHtml = `<div style="text-align:center;color:#ccc;padding:12px;font-size:13px">本周暂无支出</div>`;
+
+  return `
+    <div class="card" style="margin-bottom:16px">
+      <div class="card-header" style="background:linear-gradient(90deg,#f1f8e9,#f9fbe7);color:#558b2f"><span class="emoji">📊</span> 本周支出分布</div>
+      <div class="card-body">${catHtml}</div>
+    </div>
+    <div class="card">
+      <div class="card-header" style="background:linear-gradient(90deg,#f9fbe7,#f1f8e9);color:#558b2f"><span class="emoji">📒</span> 本周账目明细</div>
+      <div class="card-body">${listHtml}</div>
+    </div>`;
+}
+
+function openGoalModal() {
+  // 用简易弹窗
+  const name = prompt('目标名称（如：换新手机基金）', '');
+  if (!name) return;
+  const target = parseFloat(prompt('目标金额（元）', '10000'));
+  if (!target || target <= 0) { showToast('金额无效'); return; }
+  const current = parseFloat(prompt('已存金额（没有填0）', '0')) || 0;
+  window.saveGoals.push({ id: 'g' + Date.now(), name, target, current: Math.max(0, current) });
+  saveGoalsData();
+  renderWeekly();
+  showToast('存钱目标已创建 🐷');
+}
+
+function addGoalMoney(id, take) {
+  const inp = document.getElementById('goalAmt_' + id);
+  const v = parseFloat(inp.value);
+  if (!v || v <= 0) { showToast('请输入金额'); return; }
+  const g = window.saveGoals.find(x => x.id === id);
+  if (!g) return;
+  if (take) g.current = Math.max(0, g.current - v);
+  else g.current += v;
+  saveGoalsData();
+  renderWeekly();
+  showToast(take ? '已取出 💸' : '已存入 🐷');
+}
+
+function delGoal(id) {
+  if (!confirm('删除这个存钱目标？')) return;
+  window.saveGoals = window.saveGoals.filter(g => g.id !== id);
+  saveGoalsData();
+  renderWeekly();
+}
+
+function renderWeeklyReview(ds) {
+  const wk = weekKey(ds);
+  const label = weekLabel(ds);
+  const r = window.weeklyReviews.find(x => x.week === wk) || { summary: '', plan: '', reflect: '' };
+
+  // 历史
+  const history = [...window.weeklyReviews].sort((a, b) => b.week.localeCompare(a.week));
+  let histHtml = history.length ? history.map(h => `
+    <div class="weekly-review-card">
+      <div class="wk">${weekLabel(h.week)}</div>
+      <div class="body">
+        ${h.summary ? `<div><b>本周总结：</b>${h.summary}</div>` : ''}
+        ${h.plan ? `<div><b>下周计划：</b>${h.plan}</div>` : ''}
+        ${h.reflect ? `<div><b>反思改进：</b>${h.reflect}</div>` : ''}
+      </div>
+    </div>`).join('') : `<div style="text-align:center;color:#ccc;padding:20px;font-size:13px">还没有历史周复盘</div>`;
+
+  return `
+    <div class="card" style="margin-bottom:16px">
+      <div class="card-header" style="background:linear-gradient(90deg,#e8f5e9,#f1f8e9);color:#2e7d32">
+        <span class="emoji">✍️</span> ${label} 复盘
+      </div>
+      <div class="card-body">
+        <div style="margin-bottom:14px">
+          <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:6px">📝 本周总结</div>
+          <textarea id="wrSummary" placeholder="这周过得怎么样？发生了什么重要的事..." style="width:100%;min-height:80px;padding:10px;border:1.5px solid var(--border);border-radius:8px;font-size:14px;resize:vertical;background:#fafff5;color:var(--text);outline:none;font-family:inherit;line-height:1.7">${r.summary||''}</textarea>
+        </div>
+        <div style="margin-bottom:14px">
+          <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:6px">🎯 下周计划</div>
+          <textarea id="wrPlan" placeholder="下周打算做什么..." style="width:100%;min-height:80px;padding:10px;border:1.5px solid var(--border);border-radius:8px;font-size:14px;resize:vertical;background:#fafff5;color:var(--text);outline:none;font-family:inherit;line-height:1.7">${r.plan||''}</textarea>
+        </div>
+        <div style="margin-bottom:14px">
+          <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:6px">🤔 反思改进</div>
+          <textarea id="wrReflect" placeholder="哪里做得好？哪里可以更好？" style="width:100%;min-height:80px;padding:10px;border:1.5px solid var(--border);border-radius:8px;font-size:14px;resize:vertical;background:#fafff5;color:var(--text);outline:none;font-family:inherit;line-height:1.7">${r.reflect||''}</textarea>
+        </div>
+        <button class="btn" style="width:100%" onclick="saveWeeklyReview('${wk}')">${r.summary||r.plan||r.reflect ? '更新复盘' : '保存复盘'}</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header" style="background:linear-gradient(90deg,#f9fbe7,#f1f8e9);color:#558b2f"><span class="emoji">📂</span> 历史周复盘</div>
+      <div class="card-body">${histHtml}</div>
+    </div>`;
+}
+
+function saveWeeklyReview(wk) {
+  const summary = document.getElementById('wrSummary').value.trim();
+  const plan = document.getElementById('wrPlan').value.trim();
+  const reflect = document.getElementById('wrReflect').value.trim();
+  let r = window.weeklyReviews.find(x => x.week === wk);
+  if (r) {
+    r.summary = summary; r.plan = plan; r.reflect = reflect;
+  } else {
+    window.weeklyReviews.push({ week: wk, summary, plan, reflect });
+  }
+  saveWeeklyReviews();
+  renderWeekly();
+  showToast('周复盘已保存 ✅');
 }
 
 // ===================== PWA =====================
